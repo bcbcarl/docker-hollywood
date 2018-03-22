@@ -5,10 +5,11 @@ ENV TZ Asia/Taipei
 
 RUN \
   apt-get update -qq && \
-  apt-get install -qqy tzdata hollywood && \
+  apt-get install -qqy tzdata mlocate hollywood && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
   ln -sf /usr/share/zoneinfo/Asia/Taipei /etc/localtime && \
-  dpkg-reconfigure tzdata
+  dpkg-reconfigure tzdata && \
+  updatedb
 
 ENTRYPOINT [ "hollywood" ]
